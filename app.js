@@ -94,7 +94,7 @@ app.get("/posts/:postid", function(req, res){
   const requestedPostId = req.params.postid;
   Post.findOne({_id: requestedPostId}, function(err, post){
     post.viewedBy.addToSet(userid);
-    console.log(post.viewedBy);
+    post.save();
     res.render("post", {
       title: post.title,
       content: post.content,
